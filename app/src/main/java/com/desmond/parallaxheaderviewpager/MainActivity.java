@@ -18,6 +18,9 @@ public class MainActivity extends ActionBarActivity implements ScrollTabHolder {
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
+    private static final String IMAGE_TRANSLATION_Y = "image_translation_y";
+    private static final String HEADER_TRANSLATION_Y = "header_translation_y";
+
     private ViewPager mViewPager;
     private View mHeader;
     private ImageView mTopImage;
@@ -41,6 +44,11 @@ public class MainActivity extends ActionBarActivity implements ScrollTabHolder {
         mNavigBar = (CustomSlidingTabIndicator) findViewById(R.id.navig_tab);
         mHeader = findViewById(R.id.header);
 
+        if (savedInstanceState != null) {
+            mTopImage.setTranslationY(savedInstanceState.getFloat(IMAGE_TRANSLATION_Y));
+            mHeader.setTranslationY(savedInstanceState.getFloat(HEADER_TRANSLATION_Y));
+        }
+
         setupAdapter();
     }
 
@@ -51,6 +59,13 @@ public class MainActivity extends ActionBarActivity implements ScrollTabHolder {
         mMinHeaderTranslation = -mMinHeaderHeight + tabHeight;
 
         mNumFragments = 3;
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putFloat(IMAGE_TRANSLATION_Y, mTopImage.getTranslationY());
+        outState.putFloat(HEADER_TRANSLATION_Y, mHeader.getTranslationY());
+        super.onSaveInstanceState(outState);
     }
 
     private void setupAdapter() {
