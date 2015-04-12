@@ -1,0 +1,41 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header_height"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/imageview_height"
+            android:src="@drawable/scenery"
+            android:scaleType="centerCrop"/>
+
+        <com.desmond.parallaxheaderviewpager.CustomSlidingTabIndicator
+            android:id="@+id/navig_tab"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tab_height"
+            android:layout_below="@id/image"
+            app:STIshouldExpand="true"
+            app:STItabBackground="@layout/sliding_tab_view"
+            app:STIindicatorColor="@color/theme_color"
+            app:STIindicatorHeight="4dp"
+            app:STIdividerColor="@android:color/transparent"
+            android:background="@android:color/white"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

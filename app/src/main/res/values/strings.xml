@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ViewPagerWithVerticalScroll</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="long_text">asdasdasdas sadasdasd asdasdad asdasdasd dasdasdasdasdasd dasdasdas dasdasdasdasd dasdasdasdasdas dasdasdasdasdad dadadasadasdasd asdasdadasd asdasdadasdasdedcergrfgbvtegb gqergregqrevggvefvrvqgbvewbv</string>
+    <string name="medium_text">asdasdasdas sadasdasd asdasdad asdasdasd dasdasdasdasdasd dasdasdas dasdasdasdasd dasdasdasdasdas dasdasdasdasdad dadadasadasdasd asdasdadasd asda</string>
+    <string name="short_text">adasd pqeriewpfnqpf eenvcjri eochrhfeivehgi dfbdcwehfei epfeh</string>
+</resources>
