@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.util.SparseArrayCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -31,6 +32,8 @@ public class MainActivity extends ActionBarActivity implements ScrollTabHolder {
     private int mHeaderHeight;
     private int mMinHeaderTranslation;
     private int mNumFragments;
+
+    private int mScrollState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,7 +119,9 @@ public class MainActivity extends ActionBarActivity implements ScrollTabHolder {
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {}
+            public void onPageScrollStateChanged(int state) {
+                mScrollState = state;
+            }
         };
 
         return listener;
@@ -128,21 +133,22 @@ public class MainActivity extends ActionBarActivity implements ScrollTabHolder {
     @Override
     public void onListViewScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
                                  int totalItemCount, int pagePosition) {
-
         if (mViewPager.getCurrentItem() == pagePosition) {
-            int scrollY = getScrollY(view);
-            mHeader.setTranslationY(Math.max(-scrollY, mMinHeaderTranslation));
-            mTopImage.setTranslationY(scrollY / 3);
+            scrollHeader(getScrollY(view));
         }
     }
 
     @Override
     public void onScrollViewScroll(ScrollView view, int x, int y, int oldX, int oldY, int pagePosition) {
         if (mViewPager.getCurrentItem() == pagePosition){
-            float translationY = Math.max(-view.getScrollY(), mMinHeaderTranslation);
-            mHeader.setTranslationY(translationY);
-            mTopImage.setTranslationY(-translationY / 3);
+            scrollHeader(view.getScrollY());
         }
+    }
+
+    private void scrollHeader(int scrollY) {
+        float translationY = Math.max(-scrollY, mMinHeaderTranslation);
+        mHeader.setTranslationY(translationY);
+        mTopImage.setTranslationY(-translationY / 3);
     }
 
     private int getScrollY(AbsListView view) {
