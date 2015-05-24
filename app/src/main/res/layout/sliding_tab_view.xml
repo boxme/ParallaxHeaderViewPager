@@ -7,6 +7,8 @@
     android:gravity="center"
     tools:text="Inbox"
     android:textSize="13sp"
+    android:maxLines="1"
+    android:ellipsize="end"
     android:textColor="@android:color/black">
 
 </TextView>
