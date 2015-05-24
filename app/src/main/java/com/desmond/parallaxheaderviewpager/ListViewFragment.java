@@ -51,7 +51,6 @@ public class ListViewFragment extends ScrollTabHolderFragment {
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-
                 if (mScrollTabHolder != null) {
                     mScrollTabHolder.onListViewScroll(
                             view, firstVisibleItem, visibleItemCount, totalItemCount, mPosition);
@@ -65,7 +64,7 @@ public class ListViewFragment extends ScrollTabHolderFragment {
     private void setAdapter() {
         if (getActivity() == null) return;
 
-        int size = 5;
+        int size = 7;
         String[] stringArray = new String[size];
         for (int i = 0; i < size; ++i) {
             stringArray[i] = ""+i;

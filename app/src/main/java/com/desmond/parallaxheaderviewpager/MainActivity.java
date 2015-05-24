@@ -95,7 +95,6 @@ public class MainActivity extends ActionBarActivity implements ScrollTabHolder {
                         // Revealed the next page
                         fragmentContent = scrollTabHolders.valueAt(position + 1);
                     }
-
                     fragmentContent.adjustScroll((int) (mHeader.getHeight() + mHeader.getTranslationY()),
                             mHeader.getHeight());
                 }
@@ -116,7 +115,8 @@ public class MainActivity extends ActionBarActivity implements ScrollTabHolder {
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {}
+            public void onPageScrollStateChanged(int state) {
+            }
         };
 
         return listener;
@@ -128,7 +128,6 @@ public class MainActivity extends ActionBarActivity implements ScrollTabHolder {
     @Override
     public void onListViewScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
                                  int totalItemCount, int pagePosition) {
-
         if (mViewPager.getCurrentItem() == pagePosition) {
             int scrollY = getScrollY(view);
             mHeader.setTranslationY(Math.max(-scrollY, mMinHeaderTranslation));
