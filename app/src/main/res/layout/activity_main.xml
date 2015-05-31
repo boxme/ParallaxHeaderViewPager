@@ -24,17 +24,15 @@
             android:src="@drawable/scenery"
             android:scaleType="centerCrop"/>
 
-        <com.desmond.parallaxheaderviewpager.CustomSlidingTabIndicator
+        <com.desmond.parallaxheaderviewpager.slidingTab.SlidingTabLayout
             android:id="@+id/navig_tab"
             android:layout_width="match_parent"
             android:layout_height="@dimen/tab_height"
-            android:layout_below="@id/image"
-            app:STIshouldExpand="true"
-            app:STItabBackground="@layout/sliding_tab_view"
-            app:STIindicatorColor="@color/theme_color"
-            app:STIindicatorHeight="4dp"
-            app:STIdividerColor="@android:color/transparent"
-            android:background="@android:color/white"/>
+            android:background="@android:color/white"
+            app:shouldExpand="true"
+            app:indicatorColor="@color/theme_color"
+            app:tabBackground="@layout/sliding_tab_view"
+            app:tabBackgroundTextViewId="@+id/tab_textview"/>
 
     </LinearLayout>
 

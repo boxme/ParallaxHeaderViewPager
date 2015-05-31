@@ -13,6 +13,8 @@ import android.widget.AbsListView;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 
+import com.desmond.parallaxheaderviewpager.slidingTab.SlidingTabLayout;
+
 
 public class MainActivity extends ActionBarActivity implements ScrollTabHolder {
 
@@ -24,7 +26,8 @@ public class MainActivity extends ActionBarActivity implements ScrollTabHolder {
     private ViewPager mViewPager;
     private View mHeader;
     private ImageView mTopImage;
-    private CustomSlidingTabIndicator mNavigBar;
+//    private CustomSlidingTabIndicator mNavigBar;
+    private SlidingTabLayout mNavigBar;
     private ViewPagerAdapter mAdapter;
 
     private int mMinHeaderHeight;
@@ -43,7 +46,7 @@ public class MainActivity extends ActionBarActivity implements ScrollTabHolder {
 
         mTopImage = (ImageView) findViewById(R.id.image);
         mViewPager = (ViewPager) findViewById(R.id.view_pager);
-        mNavigBar = (CustomSlidingTabIndicator) findViewById(R.id.navig_tab);
+        mNavigBar = (SlidingTabLayout) findViewById(R.id.navig_tab);
         mHeader = findViewById(R.id.header);
 
         if (savedInstanceState != null) {
@@ -77,7 +80,7 @@ public class MainActivity extends ActionBarActivity implements ScrollTabHolder {
 
         mViewPager.setAdapter(mAdapter);
         mViewPager.setOffscreenPageLimit(mNumFragments);
-        mNavigBar.setPageListener(getViewPagerPageChangeListener());
+        mNavigBar.setOnPageChangeListener(getViewPagerPageChangeListener());
         mNavigBar.setViewPager(mViewPager);
     }
 
