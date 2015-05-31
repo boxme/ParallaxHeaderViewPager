@@ -28,7 +28,6 @@ public class MainActivity extends ActionBarActivity implements ScrollTabHolder {
     private ViewPager mViewPager;
     private View mHeader;
     private ImageView mTopImage;
-//    private CustomSlidingTabIndicator mNavigBar;
     private SlidingTabLayout mNavigBar;
     private ViewPagerAdapter mAdapter;
 
