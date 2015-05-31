@@ -76,7 +76,7 @@ public class ListViewFragment extends ScrollTabHolderFragment {
     }
 
     @Override
-    public void adjustScroll(int scrollHeight, int headerTranslationY) {
+    public void adjustScroll(int scrollHeight, int headerHeight) {
         if (mListView == null) return;
 
         if (scrollHeight == 0 && mListView.getFirstVisiblePosition() >= 1) {

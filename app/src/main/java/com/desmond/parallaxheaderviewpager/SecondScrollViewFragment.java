@@ -51,9 +51,9 @@ public class SecondScrollViewFragment extends ScrollTabHolderFragment {
     }
 
     @Override
-    public void adjustScroll(int scrollHeight, int headerTranslationY) {
+    public void adjustScroll(int scrollHeight, int headerHeight) {
         if (mScrollView == null) return;
 
-        mScrollView.scrollTo(NO_SCROLL_X, headerTranslationY - scrollHeight);
+        mScrollView.scrollTo(NO_SCROLL_X, headerHeight - scrollHeight);
     }
 }

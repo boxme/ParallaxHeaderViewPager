@@ -2,6 +2,7 @@ package com.desmond.parallaxheaderviewpager;
 
 import android.app.Activity;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.widget.AbsListView;
 import android.widget.ScrollView;
 
@@ -29,7 +30,7 @@ public class ScrollTabHolderFragment extends Fragment implements ScrollTabHolder
     }
 
     @Override
-    public void adjustScroll(int scrollHeight, int headerTranslationY) {}
+    public void adjustScroll(int scrollHeight, int headerHeight) {}
 
     @Override
     public void onListViewScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
@@ -37,4 +38,9 @@ public class ScrollTabHolderFragment extends Fragment implements ScrollTabHolder
 
     @Override
     public void onScrollViewScroll(ScrollView view, int x, int y, int oldX, int oldY, int pagePosition) {}
+
+    @Override
+    public void onRecyclerViewScroll(RecyclerView view, int scrollY, int pagePosition) {
+
+    }
 }

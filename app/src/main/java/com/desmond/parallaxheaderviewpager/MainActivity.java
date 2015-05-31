@@ -7,6 +7,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.util.SparseArrayCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -63,7 +65,7 @@ public class MainActivity extends ActionBarActivity implements ScrollTabHolder {
         mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.header_height);
         mMinHeaderTranslation = -mMinHeaderHeight + tabHeight;
 
-        mNumFragments = 3;
+        mNumFragments = 4;
     }
 
     @Override
@@ -101,6 +103,7 @@ public class MainActivity extends ActionBarActivity implements ScrollTabHolder {
                         fragmentContent = scrollTabHolders.valueAt(position + 1);
                     }
 
+//                    Log.d(TAG, "header height " + mHeader.getHeight() + " translationY " + mHeader.getTranslationY());
                     fragmentContent.adjustScroll((int) (mHeader.getHeight() + mHeader.getTranslationY()),
                             mHeader.getHeight());
                 }
@@ -130,7 +133,7 @@ public class MainActivity extends ActionBarActivity implements ScrollTabHolder {
     }
 
     @Override
-    public void adjustScroll(int scrollHeight, int headerTranslationY) {}
+    public void adjustScroll(int scrollHeight, int headerHeight) {}
 
     @Override
     public void onListViewScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
@@ -144,6 +147,13 @@ public class MainActivity extends ActionBarActivity implements ScrollTabHolder {
     public void onScrollViewScroll(ScrollView view, int x, int y, int oldX, int oldY, int pagePosition) {
         if (mViewPager.getCurrentItem() == pagePosition){
             scrollHeader(view.getScrollY());
+        }
+    }
+
+    @Override
+    public void onRecyclerViewScroll(RecyclerView view, int scrollY, int pagePosition) {
+        if (mViewPager.getCurrentItem() == pagePosition) {
+            scrollHeader(scrollY);
         }
     }
 
@@ -214,6 +224,10 @@ public class MainActivity extends ActionBarActivity implements ScrollTabHolder {
                     fragment = ListViewFragment.newInstance(2);
                     break;
 
+                case 3:
+                    fragment = RecyclerViewFragment.newInstance(3);
+                    break;
+
                 default:
                     throw new IllegalArgumentException("Wrong page given " + position);
             }
@@ -245,6 +259,9 @@ public class MainActivity extends ActionBarActivity implements ScrollTabHolder {
 
                 case 2:
                     return "ListView";
+
+                case 3:
+                    return "RecyclerView";
 
                 default:
                     throw new IllegalArgumentException("wrong position for the fragment in vehicle page");
