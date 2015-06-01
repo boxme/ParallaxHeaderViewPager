@@ -6,56 +6,43 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.desmond.parallaxviewpager.ListViewFragment;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ListViewFragment extends ScrollTabHolderFragment {
+public class DemoListViewFragment extends ListViewFragment {
 
-    public static final String TAG = ListViewFragment.class.getSimpleName();
-    private static final String ARG_POSITION = "position";
-
-    private ListView mListView;
-    private int mPosition;
+    public static final String TAG = DemoListViewFragment.class.getSimpleName();
 
     public static Fragment newInstance(int position) {
-        ListViewFragment fragment = new ListViewFragment();
+        DemoListViewFragment fragment = new DemoListViewFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_POSITION, position);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public ListViewFragment() {}
+    public DemoListViewFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        mPosition = getArguments().getInt(ARG_POSITION);
+
         View view = inflater.inflate(R.layout.fragment_list_view, container, false);
         mListView = (ListView) view.findViewById(R.id.listview);
         View placeHolderView = inflater.inflate(R.layout.header_placeholder, mListView, false);
         mListView.addHeaderView(placeHolderView);
 
-        mPosition = getArguments().getInt(ARG_POSITION);
 
         setAdapter();
-
-        mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {}
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                if (mScrollTabHolder != null) {
-                    mScrollTabHolder.onListViewScroll(
-                            view, firstVisibleItem, visibleItemCount, totalItemCount, mPosition);
-                }
-            }
-        });
+        setListViewOnScrollListener();
 
         return view;
     }
@@ -73,16 +60,5 @@ public class ListViewFragment extends ScrollTabHolderFragment {
                 new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, stringArray);
 
         mListView.setAdapter(adapter);
-    }
-
-    @Override
-    public void adjustScroll(int scrollHeight, int headerHeight) {
-        if (mListView == null) return;
-
-        if (scrollHeight == 0 && mListView.getFirstVisiblePosition() >= 1) {
-            return;
-        }
-
-        mListView.setSelectionFromTop(1, scrollHeight);
     }
 }

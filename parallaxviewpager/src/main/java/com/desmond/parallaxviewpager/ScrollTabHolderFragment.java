@@ -1,4 +1,4 @@
-package com.desmond.parallaxheaderviewpager;
+package com.desmond.parallaxviewpager;
 
 import android.app.Activity;
 import android.support.v4.app.Fragment;
@@ -11,7 +11,10 @@ import android.widget.ScrollView;
  */
 public class ScrollTabHolderFragment extends Fragment implements ScrollTabHolder {
 
+    protected static final String ARG_POSITION = "position";
+
     protected ScrollTabHolder mScrollTabHolder;
+    protected int mPosition;
 
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -40,7 +43,5 @@ public class ScrollTabHolderFragment extends Fragment implements ScrollTabHolder
     public void onScrollViewScroll(ScrollView view, int x, int y, int oldX, int oldY, int pagePosition) {}
 
     @Override
-    public void onRecyclerViewScroll(RecyclerView view, int scrollY, int pagePosition) {
-
-    }
+    public void onRecyclerViewScroll(RecyclerView view, int dx, int dy, int scrollY, int pagePosition) {}
 }

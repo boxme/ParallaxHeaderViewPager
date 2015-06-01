@@ -1,4 +1,4 @@
-<com.desmond.parallaxheaderviewpager.NotifyingScrollView
+<com.desmond.parallaxviewpager.NotifyingScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/scrollview"
@@ -57,4 +57,4 @@
 
     </LinearLayout>
 
-</com.desmond.parallaxheaderviewpager.NotifyingScrollView>
+</com.desmond.parallaxviewpager.NotifyingScrollView>

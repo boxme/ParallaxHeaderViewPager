@@ -1,4 +1,4 @@
-package com.desmond.parallaxheaderviewpager;
+package com.desmond.parallaxviewpager;
 
 import android.support.v7.widget.RecyclerView;
 import android.widget.AbsListView;
@@ -17,5 +17,5 @@ public interface ScrollTabHolder {
     void onScrollViewScroll(ScrollView view, int x, int y,
                             int oldX, int oldY, int pagePosition);
 
-    void onRecyclerViewScroll(RecyclerView view, int scrollY, int pagePosition);
+    void onRecyclerViewScroll(RecyclerView view, int dx, int dy, int scrollY, int pagePosition);
 }
