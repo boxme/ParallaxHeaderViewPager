@@ -1,8 +1,17 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+version = "1.0.0"
+group = "com.github.boxme"
+
+def siteUrl = 'https://github.com/boxme/ParallaxHeaderViewPager'
+def gitUrl = 'https://github.com/boxme/ParallaxHeaderViewPager.git'
 
 android {
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
+    resourcePrefix "parallaxviewpager__"
 
     defaultConfig {
         minSdkVersion 11
@@ -18,9 +27,78 @@ android {
     }
 }
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+
+    configurations = ['archives']
+    pkg {
+        repo = "maven"
+        name = "ParallaxViewPager"
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = ["MIT"]
+        publish = true
+    }
+}
+
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'aar'
+                name 'Scrollable fragments within a viewpager that allows for parallax image and sticky bar effects '
+                url siteUrl
+                licenses {
+                    license {
+                        name 'The MIT License'
+                        url 'https://github.com/boxme/AsyncManager/blob/master/LICENSE'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'boxme'
+                        name 'Desmond Ng'
+                        email 'desmond.ng.yang.yi@gmail.com'
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+
+                }
+            }
+        }
+    }
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.2.0'
     compile 'com.android.support:cardview-v7:22.2.0'
     compile 'com.android.support:recyclerview-v7:22.2.0'
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
 }

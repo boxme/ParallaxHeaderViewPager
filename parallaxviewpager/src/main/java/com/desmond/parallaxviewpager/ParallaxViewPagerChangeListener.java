@@ -2,12 +2,15 @@ package com.desmond.parallaxviewpager;
 
 import android.support.v4.util.SparseArrayCompat;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 
 /**
  * Created by desmond on 1/6/15.
  */
 public class ParallaxViewPagerChangeListener implements ViewPager.OnPageChangeListener {
+
+    public static final String TAG = ParallaxViewPagerChangeListener.class.getSimpleName();
 
     protected ViewPager mViewPager;
     protected ParallaxFragmentPagerAdapter mAdapter;
